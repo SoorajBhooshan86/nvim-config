@@ -13,6 +13,12 @@ map("i", "<C-l>", "<Right>", { desc = "Move right" })
 
 map("n", "<leader>kk", "<cmd>Telescope keymaps<cr>", { desc = "Show all keymaps" })
 
+map("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Project diagnostics" })
+map("n", "<leader>se", "<cmd>Telescope diagnostics severity=ERROR<cr>", { desc = "Project errors" })
+
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "grr", "<cmd>Telescope lsp_references<cr>", { desc = "Find references", nowait = true })
+
 map("n", "<leader>e", function()
 	require("mini.files").open()
 end, { desc = "Open file explorer" })
