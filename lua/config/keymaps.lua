@@ -13,10 +13,21 @@ map("i", "<C-l>", "<Right>", { desc = "Move right" })
 
 map("n", "<leader>kk", "<cmd>Telescope keymaps<cr>", { desc = "Show all keymaps" })
 
+map("n", "<Esc>", "<cmd>nohlsearch<cr>", { desc = "Clear search highlight" })
+
 map("n", "<leader>sd", "<cmd>Telescope diagnostics<cr>", { desc = "Project diagnostics" })
 map("n", "<leader>se", "<cmd>Telescope diagnostics severity=ERROR<cr>", { desc = "Project errors" })
 
 map("n", "grr", "<cmd>Telescope lsp_references<cr>", { desc = "Find references", nowait = true })
+
+map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+
+map("n", "<leader><leader>", "<cmd>b#<cr>", { desc = "Switch to last buffer" })
+
+map("n", "<leader>sw", function()
+	require("telescope.builtin").grep_string()
+end, { desc = "Search word under cursor" })
 
 map("n", "<leader>e", function()
 	require("mini.files").open()
@@ -25,6 +36,16 @@ end, { desc = "Open file explorer" })
 map("n", "<leader>fe", function()
 	require("mini.files").open(vim.api.nvim_buf_get_name(0))
 end, { desc = "Open file explorer at current file" })
+
+map("n", "]d", function()
+	vim.diagnostic.goto_next()
+	vim.diagnostic.open_float()
+end, { desc = "Next diagnostic" })
+
+map("n", "[d", function()
+	vim.diagnostic.goto_prev()
+	vim.diagnostic.open_float()
+end, { desc = "Prev diagnostic" })
 
 local builtin = require("telescope.builtin")
 

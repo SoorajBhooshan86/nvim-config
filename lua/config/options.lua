@@ -14,7 +14,7 @@ opt.smartindent = true
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
-opt.hlsearch = false
+opt.hlsearch = true
 
 -- UI
 opt.termguicolors = true
@@ -37,12 +37,6 @@ vim.diagnostic.config({
 	float = { border = "rounded" },
 	virtual_text = false,
 	signs = true,
-})
-
-vim.api.nvim_create_autocmd("CursorHold", {
-	callback = function()
-		vim.diagnostic.open_float(nil, { focus = false })
-	end,
 })
 
 vim.lsp.config("clangd", {
@@ -71,5 +65,11 @@ vim.api.nvim_create_autocmd("User", {
 		vim.api.nvim_win_set_option(args.data.win_id, "winblend", 30)
 		vim.api.nvim_set_hl(0, "MiniFilesNormal", { bg = "NONE" })
 		vim.api.nvim_set_hl(0, "MiniFilesBorder", { bg = "NONE" })
+	end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
 	end,
 })
