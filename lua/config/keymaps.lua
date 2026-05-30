@@ -29,11 +29,11 @@ map("n", "<leader>sw", function()
 	require("telescope.builtin").grep_string()
 end, { desc = "Search word under cursor" })
 
-map("n", "<leader>e", function()
+map("n", "<leader>fe", function()
 	require("mini.files").open()
 end, { desc = "Open file explorer" })
 
-map("n", "<leader>fe", function()
+map("n", "<leader>e", function()
 	require("mini.files").open(vim.api.nvim_buf_get_name(0))
 end, { desc = "Open file explorer at current file" })
 
